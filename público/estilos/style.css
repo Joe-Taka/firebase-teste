@@ -1,0 +1,281 @@
+
+
+* { /* resetando */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* Definimos a fonte no body pois desse modo, os elementos filhos de body
+     poderão herdar todas esaas propriedades dela */
+    font-family: "Righteous", cursive;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.7; /* distância entre linhas 1.7x maior que o padrão */
+    color: rgb(255, 255, 255);
+    padding: 30px;
+}
+
+.header{
+    /* Define que em qualquer situação, a altura desse elemento (header) deverá ser 95% do viewport.
+    Experimente mudar os valores e inspecionar 'header'  */
+    height: 95vh;
+    /* Insere um gradiente indo de baixo para cima, de uma cor para outra.
+    Devemos inserir uma opacidade <1 se não a imagem não aparece */
+    background-image: linear-gradient(
+        to top, 
+        rgba(123, 170, 139, 0.7), /* cor inicial */
+        rgba(2, 61, 10, 0.9)) , /* cor final */
+        url(price-action.jpg);
+    /* background-image: url(servers.jpg); */
+    /* Encaixa a img dentro do viewport do 'header' */
+    background-size: cover; 
+    /* Garante que, independente do tamanho da janela, o topo da imagem sempre estará no topo do viewport.
+    Alterne entre top-bottom e mude o tamanho da janela para testar*/
+    position: relative;
+}
+
+.logo-box{
+    /* Para que a referência das medidas abaixo seja 'header', inserimos 'position: relative' nela.
+    Perceba ainda que isso modifica o tamanho do 'div' correspondente na inspeção */
+    position: absolute;
+    /* Padrão: */
+    top: 25px;
+    left: 25px;
+    /* top: 325px;
+    left: 365px; */
+}
+
+/*  Por enquanto não faz nada
+.fa:link, .fa:visited{
+    text-decoration: none;
+    text-transform: uppercase;
+} */
+
+.fa.fa-home {
+    /* Definindo o tamanho do ícone. 
+    Observe que o tamanho do 'div' muda conforme o tamanho do seu conteúdo/ícone */
+    font-size: 35px;
+}
+
+.fa.fa-home:hover{
+    cursor: pointer;
+    border-bottom-color: transparent;
+    color: #76c2ac !important;
+    text-shadow: 0 0 10px rgba(0, 0, 255, 0.377);
+}
+
+/* Definindo fonts dos span que ficam ao lado dos ícones */
+.logo-box > span{
+    font-family: "Righteous", cursive;
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 1.7; /* distância entre linhas 1.7x maior que o padrão */
+    color: rgb(255, 255, 255);
+}
+
+.fa.fa-home + span /* hide spans immediately after images that are set to fade */ {
+    opacity:0;
+    transition: 0.4s;
+}
+
+.fa.fa-home:hover + span /* display spans immediately after :hover faded images */ {
+    opacity: 1;
+}
+
+.text-box{
+    position: absolute;
+    /* Borda para visualizar o tamanho do box */
+    /* background-color: blue; */
+    /* O tamanho tem como referência o seu parente ('header'). left: 50% significa que o seu lado
+    esquerdo está à 50% à direita de 'header'*/
+    top: 50%;
+    left: 50%; 
+    /* Aqui, uma forma de transladar o elemento, em relação à ele mesmo*/
+    transform: translate(-50%, -50%); 
+    text-align: center;
+}
+
+.heading-primary {
+    font-family: "Righteous", cursive;
+    text-transform: uppercase;
+}
+
+.heading-primary-main{
+    /* Experimente tirar o 'display:block' e veja como o elemento se modifica */
+    display:block;
+    font-size: 50px;
+    font-weight: 400;
+    letter-spacing: 10px;
+    /* Inserindo a animação de nome 'moveinleft' criado por mim */
+    animation-name: moveinleft;
+    animation-duration: 1.5s;
+    /* A animação começa rápido e depois se torna mais devagar no final */
+    animation-timing-function: ease-out;
+    /* Insere um delay para o início da animação
+    animation-delay: 1s;
+    Insere repetições na animação
+    animation-iteration-count: 3; */
+    margin-bottom: 15px;
+}
+
+.heading-primary-sub{
+    display:block;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 5px;
+    /* Outra notação (mais curta) para inserir animações */
+    animation: moveinright 1.5s ease-out;
+    margin-bottom: 55px;
+}
+
+/* Criando animações.
+Primeiro definimos um nome para a animação. No caso: 'moveinleft */
+@keyframes moveinleft {
+    /* Agora, dividimos a animação em fases, definindo o que vai acontecer 
+    de acordo com o progresso da animação */
+    0% {
+        /* No começo da imagem, o texto não será visível */
+        opacity: 0;
+        /* Ainda, queremos que o texto surja da direção à esquerda */
+        transform: translateX(-120px);
+    }
+    /* Faz uma animação pequena de volta */
+    80% {
+        transform: translateX(10px);
+    }
+    
+    100%{
+        opacity: 1;
+        /* No final, queremos que ela esteja na posição atual */
+        transform: translate(0);
+    }
+}
+
+@keyframes moveinright {
+    /* Agora, dividimos a animação em fases, definindo o que vai acontecer 
+    de acordo com o progresso da animação */
+    0% {
+        /* No começo da imagem, o texto não será visível */
+        opacity: 0;
+        /* Ainda, queremos que o texto surja da direção à esquerda */
+        transform: translateX(120px);
+    }
+    /* Faz uma animação pequena de volta */
+    80% {
+        transform: translateX(-10px);
+    }
+    
+    100%{
+        opacity: 1;
+        /* No final, queremos que ela esteja na posição atual */
+        transform: translate(0);
+    }
+}
+
+@keyframes moveintop {
+    /* Agora, dividimos a animação em fases, definindo o que vai acontecer 
+    de acordo com o progresso da animação */
+    0% {
+        /* No começo da imagem, o texto não será visível */
+        opacity: 0;
+        /* Ainda, queremos que o texto surja da direção à esquerda */
+        transform: translateY(30px);
+    }
+    
+    100%{
+        opacity: 1;
+        /* No final, queremos que ela esteja na posição atual */
+        transform: translate(0);
+    }
+}
+
+@keyframes fadein{
+    0% {
+        /* No começo da imagem, o texto não será visível */
+        visibility: visible;
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+@keyframes fadeout{
+    0% {
+        /* No começo da imagem, o texto não será visível */
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+.btn:link, btn:visited{
+    text-transform: uppercase;
+    /* Tirando o underline */
+    text-decoration: none;
+    /* Inserindo um padding, que terá a cor definida por 'background-color' */
+    padding: 15px 40px;
+    /* Por ser inline, é tratado como txt e assim, pode ser centralizado com 'align-text' */
+    display: inline-block;
+    border-radius: 100px;
+    /* Caso haja alguma transição, definimos o tempo em que ela ocorrerá */
+    transition: all .2s;
+    position: relative;
+}
+
+.btn:hover{
+    /* O botão vai pra cima. No CSS o eixo y tem direção de cima para baixo */ 
+    transform: translateY(-3px);
+    /* Sombra: eixo X, eixo Y, blur, cor */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+.btn:active{
+    transform: translateY(-1px); 
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
+
+.btn-white{
+    background-color: #fff;
+    color: #777;
+}
+
+/* Adicionando um novo botão na frente do botão que já existe */
+.btn::after{
+    /* Inserimos um texto sem nada escrito */
+    content:'';
+    display:inline-block;
+    /* Pegando o tamanho e grossura do parente ('btn') */
+    height: 100%;
+    width: 100%;
+    border-radius: 100px;
+    /* Queremos que a posição seja relativo ao 'btn', assim, inserimos um 'position: relative' em
+    '.btn:link, btn:visited' */
+    position: absolute;
+    /* Definindo a posição do botão em relação à 'btn' e se ele fica atrás ou na frente */
+    top: 0;
+    left: 0;
+    z-index: -1;
+    /* Experimente colocar 4s em vez de .4s */
+    transition: all .4s;
+}
+
+.btn-white::after{
+    background-color: white;
+}
+
+.btn:hover::after{
+    transform: scaleX(1.2) scaleY(1.2);
+    opacity: 0;
+}
+
+.btn-animated{
+    /* Inserindo um delay na animação de 0.75s */
+    animation: moveintop .5s ease-out .75s;
+    /* Aplica o estilo inicial da animação antes de seu início */
+    animation-fill-mode: backwards;
+}
